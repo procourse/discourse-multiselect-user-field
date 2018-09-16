@@ -1,0 +1,6 @@
+en:
+  admin_js:
+    admin:
+      user_fields:
+        field_types:
+          multiselect-dropdown: "Multiselect dropdown"
