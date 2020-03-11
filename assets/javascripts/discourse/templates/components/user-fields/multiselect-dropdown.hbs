@@ -1,7 +1,16 @@
 <label class="control-label" for="{{concat 'user-' elementId}}">{{{field.name}}}</label>
 <div class='controls'>
-  {{multi-select id=(concat 'user-' elementId) content=field.options values=values none=noneLabel}}
-  
+  {{multi-select
+    id=(concat 'user-' elementId)
+    content=field.options
+    value=values
+    valueProperty=null
+    nameProperty=null
+    options=(hash
+      none=noneLabel
+    )
+  }}
+
   {{#if field.required}}<span class='required'>*</span>{{/if}}
   <div class="instructions">{{{field.description}}}</div>
 </div>
