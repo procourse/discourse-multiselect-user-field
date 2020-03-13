@@ -11,7 +11,7 @@ export default{
   before: 'inject-discourse-objects',
   initialize(){
     withPluginApi('0.8.12', api => {
-      
+
       api.modifyClassStatic('model:user-field',{
         fieldTypes() {
           if (!this._fieldTypes) {
@@ -31,9 +31,14 @@ export default{
         values: [],
 
         @on("init")
-        init_values(){
-          if (this.field.field_type == "multiselect-dropdown" && this.get("value")) {
-              this.set("values", JSON.parse(this.get("value")));
+        initValues() {
+          if (this.field.field_type == "multiselect-dropdown" && this.value) {
+            try {
+              const parsedValue = JSON.parse(this.value);
+              this.set("values", parsedValue);
+            } catch (e) {
+              this.set("values", []);
+            }
           }
         },
 
